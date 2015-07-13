@@ -79,6 +79,7 @@ set fileformats=unix,mac,dos
 runtime macros/matchit.vim
 
 " Let folding be based on the current syntax.
+" Nevermind: This causes files to be folded when loaded.  No thank you!
 "set foldmethod=syntax
 
 " Since I have a windoze background, I'm used to these.
@@ -96,8 +97,8 @@ runtime macros/matchit.vim
         " Cut-n-Paste
         vnoremap <C-X> "+x
         vnoremap <C-C> "+y
-        map <C-V>               "+gP
-        cmap <C-V>              <C-R>+
+        map <C-V>      "+gP
+        cmap <C-V>     <C-R>+
 
         " Pasting blockwise and linewise selections is not possible in Insert and
         " Visual mode without the +virtualedit feature.  They are pasted as if they
@@ -105,6 +106,7 @@ runtime macros/matchit.vim
         " Uses the paste.vim autoload script.
         exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
         exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
         " Use CTRL-Q to do what CTRL-V used to do
         noremap <C-Q>           <C-V>
 
@@ -179,8 +181,8 @@ if has("autocmd")
         " Current directory should always be the directory of the file we're editing.
         autocmd BufEnter * silent! lcd %:p:h
 
-        " Unfold the folds!
-        autocmd FileType {go,c} normal zR
+        "" Unfold the folds!
+        "autocmd FileType {go,c} normal zR
 else
         " No autocommand support, so just turn on autointenting.
         set autoindent

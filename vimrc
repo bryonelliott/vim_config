@@ -12,8 +12,10 @@ call pathogen#infect()
 set sessionoptions-=options
 
 syntax enable
-filetype plugin on
 set number
+
+" Needed by matchit.
+filetype plugin on 
 
 " The default temp directory on Windows just doesn't work.  Try this:
 if has("win32") || has("win16")
@@ -73,12 +75,11 @@ map Q gq
 " Recognize all types of line endings.
 set fileformats=unix,mac,dos
 
-" Extend matching functionality.  http://www.vim.org/scripts/script.php?script_id=39
-"source $VIMRUNTIME/macros/matchit.vim
+" Extend matching functionality.  Included with VIM, so just activate it.
 runtime macros/matchit.vim
 
 " Let folding be based on the current syntax.
-set foldmethod=syntax
+"set foldmethod=syntax
 
 " Since I have a windoze background, I'm used to these.
         " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows

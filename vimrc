@@ -78,10 +78,6 @@ set fileformats=unix,mac,dos
 " Extend matching functionality.  Included with VIM, so just activate it.
 runtime macros/matchit.vim
 
-" Let folding be based on the current syntax.
-" Nevermind: This causes files to be folded when loaded.  No thank you!
-"set foldmethod=syntax
-
 " Since I have a windoze background, I'm used to these.
         " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
         behave mswin
@@ -205,4 +201,14 @@ inoremap <buffer> <silent> <End>  <C-o>g<End>
 " Allow modelines.
 set modeline
 set modelines=5
+
+" Syntastic.  https://github.com/scrooloose/syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 

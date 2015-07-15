@@ -216,3 +216,6 @@ let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_style_error_symbol = "S✗"
 let g:syntastic_style_warning_symbol  = "S⚠"
 
+" Fugitive.  https://github.com/tpope/vim-fugitive
+set statusline+=%{fugitive#statusline()}
+

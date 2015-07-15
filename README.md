@@ -2,7 +2,7 @@
 
 Personal VIM configuration.
 
-1) Clone into ~/.vim
+1) git clone git@github.com:bryonelliott/vim_config.git ~/.vim
 
 2) ln -s .vim/vimrc ~/.vimrc
 

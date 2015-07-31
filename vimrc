@@ -203,9 +203,9 @@ set modeline
 set modelines=5
 
 " Syntastic.  https://github.com/scrooloose/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -217,5 +217,5 @@ let g:syntastic_style_error_symbol = "S✗"
 let g:syntastic_style_warning_symbol  = "S⚠"
 
 " Fugitive.  https://github.com/tpope/vim-fugitive
-set statusline+=%{fugitive#statusline()}
+"set statusline+=%{fugitive#statusline()}
 

@@ -58,10 +58,10 @@ endif
 
 " Tabs.
 set tabstop=4
-set softtabstop=4
+"set softtabstop=4
 set shiftwidth=4
-"set noexpandtab
-set expandtab
+set noexpandtab
+"set expandtab
 
 " Because hyphenated words are real words, too!
 set iskeyword+=-,_
@@ -160,9 +160,9 @@ if has("autocmd")
         autocmd FileType {html,xml,xslt,htmldjango}
                 \  setlocal columns=130
 
-        "" Python files should use spaces for indentation.
-        "autocmd FileType python
-        "       \  setlocal expandtab softtabstop=4
+        " Python files should use spaces for indentation.
+        autocmd FileType python
+               \  setlocal expandtab softtabstop=4
 
         " Don't wrap log files.
         autocmd BufNew,BufRead *.log
@@ -178,7 +178,7 @@ if has("autocmd")
         autocmd BufEnter * silent! lcd %:p:h
 
         "" Unfold the folds!
-        "autocmd FileType {go,c} normal zR
+        "autocmd FileType {go,c,python} normal zR
 else
         " No autocommand support, so just turn on autointenting.
         set autoindent

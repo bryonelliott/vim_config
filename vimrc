@@ -215,6 +215,9 @@ let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_style_error_symbol = "S✗"
 let g:syntastic_style_warning_symbol  = "S⚠"
+if (system('uname') =~ "darwin")
+	let g:syntastic_python_python_exec = '/usr/local/opt/python3/bin/python3'
+endif
 
 " Fugitive.  https://github.com/tpope/vim-fugitive
 "set statusline+=%{fugitive#statusline()}

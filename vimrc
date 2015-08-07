@@ -58,10 +58,10 @@ endif
 
 " Tabs.
 set tabstop=4
-"set softtabstop=4
+set softtabstop=4
 set shiftwidth=4
-set noexpandtab
-"set expandtab
+"set noexpandtab
+set expandtab
 
 " Because hyphenated words are real words, too!
 set iskeyword+=-,_
@@ -168,17 +168,16 @@ if has("autocmd")
         autocmd BufNew,BufRead *.log
                 \  setlocal nowrap go+=b
 
+        " File types in which I want tabs to be tabs.
+        autocmd FileType {sh,vim}
+               \  setlocal noexpandtab softtabstop=0
+
         "" Recognize SCONS files as Python.
         "autocmd BufNew,BufRead SConstruct*,SConscript*
         "       \  setf python
         "autocmd BufNew,BufRead SConstruct*,SConscript*
         "       \  setlocal syntax=python
 
-        "" Current directory should always be the directory of the file we're editing.
-        "autocmd BufEnter * silent! lcd %:p:h
-
-        "" Unfold the folds!
-        "autocmd FileType {go,c,python} normal zR
 else
         " No autocommand support, so just turn on autointenting.
         set autoindent

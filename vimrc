@@ -174,8 +174,8 @@ if has("autocmd")
         "autocmd BufNew,BufRead SConstruct*,SConscript*
         "       \  setlocal syntax=python
 
-        " Current directory should always be the directory of the file we're editing.
-        autocmd BufEnter * silent! lcd %:p:h
+        "" Current directory should always be the directory of the file we're editing.
+        "autocmd BufEnter * silent! lcd %:p:h
 
         "" Unfold the folds!
         "autocmd FileType {go,c,python} normal zR

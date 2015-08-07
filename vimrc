@@ -14,7 +14,7 @@ set sessionoptions-=options
 syntax enable
 set number
 
-" Needed by matchit.
+" Needed by matchit, et al.
 filetype plugin on 
 
 " The default temp directory on Windows just doesn't work.  Try this:
@@ -221,4 +221,14 @@ endif
 
 " Fugitive.  https://github.com/tpope/vim-fugitive
 "set statusline+=%{fugitive#statusline()}
+
+" Airline.  https://github.com/bling/vim-airline
+set laststatus=2
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
 

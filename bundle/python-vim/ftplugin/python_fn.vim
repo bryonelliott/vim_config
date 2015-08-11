@@ -197,7 +197,7 @@ endfunction
 " commentString is inserted in non-empty lines, and should be aligned with
 " the block
 function! PythonCommentSelection()  range
-  let commentString = "#"
+  let commentString = "# "
   let cl = a:firstline
   let ind = 1000    " I hope nobody use so long lines! :)
 
@@ -231,7 +231,7 @@ endfunction
 function! PythonUncommentSelection()  range
   " commentString could be different than the one from CommentSelection()
   " For example, this could be "# \\="
-  let commentString = "#"
+  let commentString = "# "
   let cl = a:firstline
   while (cl <= a:lastline)
     let ul = substitute(getline(cl),

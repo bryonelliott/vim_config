@@ -78,6 +78,9 @@ set fileformats=unix,mac,dos
 " Extend matching functionality.  Included with VIM, so just activate it.
 runtime macros/matchit.vim
 
+" It makes more sense to me to have a new vertical window appear on the right.
+set splitright
+
 " Since I have a windoze background, I'm used to these.
         " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
         behave mswin

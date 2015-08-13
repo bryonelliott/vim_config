@@ -5,7 +5,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Pathogen: Poor man's package manager. Easy manipulation of 'runtimepath' et al 
+" Pathogen: Poor man's package manager. Easy manipulation of 'runtimepath' et al
 " http://www.vim.org/scripts/script.php?script_id=2332
 " http://github.com/tpope/vim-pathogen
 call pathogen#infect()
@@ -15,7 +15,7 @@ syntax enable
 set number
 
 " Needed by matchit, et al.
-filetype plugin on 
+filetype plugin on
 
 " The default temp directory on Windows just doesn't work.  Try this:
 if has("win32") || has("win16")
@@ -165,7 +165,7 @@ if has("autocmd")
 
         " Python files should use spaces for indentation.
         autocmd FileType python
-               \  setlocal expandtab softtabstop=4
+               \  setlocal expandtab softtabstop=4 nowrap go+=b
 
         " Don't wrap log files.
         autocmd BufNew,BufRead *.log
@@ -234,3 +234,8 @@ let g:airline_right_sep = '◀'
 "let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
+" Taglist.  http://www.vim.org/scripts/script.php?script_id=273
+nnoremap <silent> <F8> :TlistUpdate<CR>:TlistToggle<CR>
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Process_File_Always = 1

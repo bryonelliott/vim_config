@@ -181,6 +181,12 @@ if has("autocmd")
         "autocmd BufNew,BufRead SConstruct*,SConscript*
         "       \  setlocal syntax=python
 
+        " Recognize .sls files as YAML.
+        autocmd BufNew,BufRead *.sls
+               \  setf yaml
+        autocmd BufNew,BufRead *.sls
+               \  setlocal syntax=yaml
+
 else
         " No autocommand support, so just turn on autointenting.
         set autoindent

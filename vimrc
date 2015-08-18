@@ -37,7 +37,7 @@ if &t_Co > 2 || has("gui_running")
         syntax sync fromstart
 endif
 if has("gui_running")
-        set columns=110
+        set columns=90
         set lines=70
         aunmenu ToolBar.Print
         if has("gui_gtk")
@@ -161,7 +161,7 @@ if has("autocmd")
 
         " Markup files need to be wider.
         autocmd FileType {html,xml,xslt,htmldjango}
-                \  setlocal columns=130
+                \  setlocal columns=120
 
         " Python files should use spaces for indentation.
         autocmd FileType python

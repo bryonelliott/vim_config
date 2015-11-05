@@ -185,7 +185,7 @@ if has("autocmd")
         autocmd BufNew,BufRead *.sls
                \  setf yaml
         autocmd BufNew,BufRead *.sls
-               \  setlocal syntax=yaml
+               \  setlocal syntax=yaml tabstop=2 softtabstop=2 shiftwidth=2
 
 else
         " No autocommand support, so just turn on autointenting.
@@ -228,6 +228,7 @@ if (system('uname') =~ "darwin")
 endif
 
 " Fugitive.  https://github.com/tpope/vim-fugitive
+set previewheight=25
 "set statusline+=%{fugitive#statusline()}
 
 " Airline.  https://github.com/bling/vim-airline

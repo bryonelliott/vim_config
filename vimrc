@@ -240,6 +240,7 @@ let g:airline_right_sep = '◀'
 "let g:airline_symbols.paste = 'ρ'
 "let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+"let g:airline_theme=
 
 " Taglist.  http://www.vim.org/scripts/script.php?script_id=273
 nnoremap <silent> <F8> :TlistUpdate<CR>:TlistToggle<CR>
@@ -248,6 +249,19 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Process_File_Always = 1
 let Tlist_Close_On_Select = 1
 
-" Enable mouse support within a shell window.  See :help MouseDown for more
-" info.
+" Enable mouse support within a shell window.  See :help MouseDown for more info.
 set mouse=a
+
+" Colour Scheme
+" /usr/share/vim/vim74/colors
+" colorscheme ron
+set background=light
+colorscheme moria
+
+
+" NOTES
+" Run-time path: :echo &rtp
+" :scriptnames : list all plugins, _vimrcs loaded (super)
+" :verbose set history? : reveals value of history and where set
+" :function : list functions
+" :func SearchCompl : List particular function

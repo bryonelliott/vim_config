@@ -1,4 +1,4 @@
-" Bryon's VIMRC.  Based on Bram Moolenaar's example VIMRC file and
+﻿" Bryon's VIMRC.  Based on Bram Moolenaar's example VIMRC file and
 " his mswin.vim file.
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -45,7 +45,7 @@ if has("gui_running")
                 set guifont=FreeMono\ 11
         endif
         if has("gui_win32")
-                set guifont=Courier_New:h8:cANSI
+                set guifont=DejaVu_Sans_Mono:h8:cANSI
         endif
 endif
 

@@ -10,6 +10,7 @@ set nocompatible
 " http://github.com/tpope/vim-pathogen
 call pathogen#infect()
 set sessionoptions-=options
+Helptags
 
 syntax enable
 set number
@@ -69,28 +70,26 @@ set iskeyword+=-,_
 " Make multiple buffers a bit easier to use.
 set hidden
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
 " Recognize all types of line endings.
 set fileformats=unix,mac,dos
 
 " Extend matching functionality.  Included with VIM, so just activate it.
 runtime macros/matchit.vim
 
-" It makes more sense to me to have a new vertical window appear on the right.
+" It makes more sense to me to have a new vertical window appear on the right or below.
 set splitright
+set splitbelow
 
 " Since I have a windoze background, I'm used to these.
-        " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
+        " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows.
         behave mswin
         " BUT!  Leave select mode off since I prefer visual mode.
         set selectmode=
 
-        " backspace and cursor keys wrap to previous/next line
+        " backspace and cursor keys wrap to previous/next line.
         set backspace=indent,eol,start whichwrap+=<,>,[,]
 
-        " backspace in Visual mode deletes selection
+        " backspace in Visual mode deletes selection.
         vnoremap <BS> d
 
         " Cut-n-Paste
@@ -240,7 +239,7 @@ let g:airline_right_sep = '◀'
 "let g:airline_symbols.paste = 'ρ'
 "let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
-"let g:airline_theme=
+let g:airline_theme='badwolf' " .vim/bundle/vim-airline/autoload/airline/themes
 
 " Taglist.  http://www.vim.org/scripts/script.php?script_id=273
 nnoremap <silent> <F8> :TlistUpdate<CR>:TlistToggle<CR>
@@ -258,10 +257,10 @@ set mouse=a
 set background=light
 colorscheme moria
 
-
 " NOTES
 " Run-time path: :echo &rtp
 " :scriptnames : list all plugins, _vimrcs loaded (super)
 " :verbose set history? : reveals value of history and where set
 " :function : list functions
 " :func SearchCompl : List particular function
+" gq formats the selected lines of text.

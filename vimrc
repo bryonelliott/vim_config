@@ -226,6 +226,9 @@ if (system('uname') =~ "darwin")
 	let g:syntastic_python_python_exec = '/usr/local/opt/python3/bin/python3'
 endif
 
+" GitGutter
+let g:gitgutter_max_signs = 2000
+
 " Fugitive.  https://github.com/tpope/vim-fugitive
 set previewheight=25
 "set statusline+=%{fugitive#statusline()}
@@ -287,6 +290,9 @@ set mouse=a
 " colorscheme ron
 set background=light
 colorscheme moria
+
+" Highlight the line the cursor is on.
+set cursorline
 
 " NOTES
 " Run-time path: :echo &rtp

@@ -292,7 +292,10 @@ set background=light
 colorscheme moria
 
 " Highlight the line the cursor is on.
-set cursorline
+" set cursorline
+
+" Force 256 colours.
+set t_Co=256
 
 " NOTES
 " Run-time path: :echo &rtp

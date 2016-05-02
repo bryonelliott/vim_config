@@ -34,19 +34,19 @@ set ruler
 set showcmd
 set showmode
 if &t_Co > 2 || has("gui_running")
-        syntax on
-        syntax sync fromstart
+    syntax on
+    syntax sync fromstart
 endif
 if has("gui_running")
-        set columns=90
-        set lines=70
-        aunmenu ToolBar.Print
-        if has("gui_gtk")
-                set guifont=FreeMono\ 11
-        endif
-        if has("gui_win32")
-                set guifont=DejaVu_Sans_Mono:h8:cANSI
-        endif
+    set columns=90
+    set lines=70
+    aunmenu ToolBar.Print
+    if has("gui_gtk")
+        set guifont=FreeMono\ 11
+    endif
+    if has("gui_win32")
+        set guifont=DejaVu_Sans_Mono:h8:cANSI
+    endif
 endif
 
 " Searching.
@@ -54,14 +54,13 @@ set incsearch
 set ignorecase
 set hlsearch
 if &t_Co > 2 || has("gui_running")
-        set hlsearch
+    set hlsearch
 endif
 
 " Tabs.
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-"set noexpandtab
 set expandtab
 
 " Because hyphenated words are real words, too!
@@ -80,111 +79,108 @@ runtime macros/matchit.vim
 set splitright
 set splitbelow
 
-" Since I have a windoze background, I'm used to these.
-        " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows.
-        behave mswin
-        " BUT!  Leave select mode off since I prefer visual mode.
-        set selectmode=
+" Since I have a windoze background, I'm used to these:
+    " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows.
+    behave mswin
+    " BUT!  Leave select mode off since I prefer visual mode.
+    set selectmode=
 
-        " backspace and cursor keys wrap to previous/next line.
-        set backspace=indent,eol,start whichwrap+=<,>,[,]
+    " backspace and cursor keys wrap to previous/next line.
+    set backspace=indent,eol,start whichwrap+=<,>,[,]
 
-        " backspace in Visual mode deletes selection.
-        vnoremap <BS> d
+    " backspace in Visual mode deletes selection.
+    vnoremap <BS> d
 
-        " Cut-n-Paste
-        vnoremap <C-X> "+x
-        vnoremap <C-C> "+y
-        map <C-V>      "+gP
-        cmap <C-V>     <C-R>+
+    " Cut-n-Paste
+    vnoremap <C-X> "+x
+    vnoremap <C-C> "+y
+    map <C-V>      "+gP
+    cmap <C-V>     <C-R>+
 
-        " Pasting blockwise and linewise selections is not possible in Insert and
-        " Visual mode without the +virtualedit feature.  They are pasted as if they
-        " were characterwise instead.
-        " Uses the paste.vim autoload script.
-        exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-        exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+    " Pasting blockwise and linewise selections is not possible in Insert and
+    " Visual mode without the +virtualedit feature.  They are pasted as if they
+    " were characterwise instead.
+    " Uses the paste.vim autoload script.
+    exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+    exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
-        " Use CTRL-Q to do what CTRL-V used to do
-        noremap <C-Q>           <C-V>
+    " Use CTRL-Q to do what CTRL-V used to do
+    noremap <C-Q>           <C-V>
 
-        " For CTRL-V to work autoselect must be off.
-        " On Unix we have two selections, autoselect can be used.
-        if !has("unix")
-          set guioptions-=a
-        endif
+    " For CTRL-V to work autoselect must be off.
+    " On Unix we have two selections, autoselect can be used.
+    if !has("unix")
+        set guioptions-=a
+    endif
 
-        " CTRL-A is Select all
-        noremap <C-A> gggH<C-O>G
-        inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-        cnoremap <C-A> <C-C>gggH<C-O>G
-        onoremap <C-A> <C-C>gggH<C-O>G
-        snoremap <C-A> <C-C>gggH<C-O>G
-        xnoremap <C-A> <C-C>ggVG
+    " CTRL-A is Select all
+    noremap <C-A> gggH<C-O>G
+    inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+    cnoremap <C-A> <C-C>gggH<C-O>G
+    onoremap <C-A> <C-C>gggH<C-O>G
+    snoremap <C-A> <C-C>gggH<C-O>G
+    xnoremap <C-A> <C-C>ggVG
 
-        " CTRL-Tab is Next window
-        noremap <C-Tab> <C-W>w
-        inoremap <C-Tab> <C-O><C-W>w
-        cnoremap <C-Tab> <C-C><C-W>w
-        onoremap <C-Tab> <C-C><C-W>w
+    " CTRL-Tab is Next window
+    noremap <C-Tab> <C-W>w
+    inoremap <C-Tab> <C-O><C-W>w
+    cnoremap <C-Tab> <C-C><C-W>w
+    onoremap <C-Tab> <C-C><C-W>w
 
-        " CTRL-F4 is Close window
-        noremap <C-F4> <C-W>c
-        inoremap <C-F4> <C-O><C-W>c
-        cnoremap <C-F4> <C-C><C-W>c
-        onoremap <C-F4> <C-C><C-W>c
+    " CTRL-F4 is Close window
+    noremap <C-F4> <C-W>c
+    inoremap <C-F4> <C-O><C-W>c
+    cnoremap <C-F4> <C-C><C-W>c
+    onoremap <C-F4> <C-C><C-W>c
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-        " Enable file type detection.
-        " Also load indent files, to automatically do language-dependent indenting.
-        filetype plugin indent on
+    " Enable file type detection.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
 
-        " When editing a file, always jump to the last known cursor position.
-        " Don't do it when the position is invalid or when inside an event handler
-        " (happens when dropping a file on gvim).
-        autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
-                \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal g`\"" |
+            \ endif
 
-        " From a tip on vim.org.  Allows Ctrl-N completion to work w/ XML.
-        autocmd FileType {html,xml,xslt,htmldjango}
-                \  setlocal iskeyword=@,-,\:,48-57,_,128-167,224-235
+    " From a tip on vim.org.  Allows Ctrl-N completion to work w/ XML.
+    autocmd FileType {html,xml,xslt,htmldjango}
+            \  setlocal iskeyword=@,-,\:,48-57,_,128-167,224-235
 
-        " Markup files need to be wider.
-        autocmd FileType {html,xml,xslt,htmldjango}
-                \  setlocal columns=120
+    " Markup files need to be wider.
+    autocmd FileType {html,xml,xslt,htmldjango}
+            \  setlocal columns=120
 
-        " YAML files use different indentation.
-        autocmd FileType yaml
-                \  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    " YAML files use different indentation.
+    autocmd FileType yaml
+            \  setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-        " Python files should use spaces for indentation.
-        autocmd FileType python
-                \  setlocal expandtab softtabstop=4 nowrap go+=b
+    " Python files should use spaces for indentation.
+    autocmd FileType python
+            \  setlocal expandtab softtabstop=4 nowrap go+=b
 
-        " Don't wrap log files.
-        autocmd BufNew,BufRead *.log
-                \  setlocal nowrap go+=b
+    " Don't wrap log files.
+    autocmd BufNew,BufRead *.log setlocal nowrap go+=b
 
-        " File types in which I want tabs to be tabs.
-        autocmd FileType {sh,vim}
-                \  setlocal noexpandtab softtabstop=0
+    "" File types in which I want tabs to be tabs.
+    "autocmd FileType {sh,vim}
+    "        \  setlocal noexpandtab softtabstop=0
 
-        "" Recognize SCONS files as Python.
-        "autocmd BufNew,BufRead SConstruct*,SConscript*
-        "        \  setf python
-        "autocmd BufNew,BufRead SConstruct*,SConscript*
-        "        \  setlocal syntax=python
+    " Recognize SCONS files as Python.
+    autocmd BufNew,BufRead SConstruct*,SConscript* setf python
+    autocmd BufNew,BufRead SConstruct*,SConscript* setlocal syntax=python
 
-        " Recognize .sls files as YAML.
-        autocmd BufNew,BufRead *.sls setf yaml
-        autocmd BufNew,BufRead *.sls setlocal syntax=yaml
+    " Recognize .sls files as YAML.
+    autocmd BufNew,BufRead *.sls setf yaml
+    autocmd BufNew,BufRead *.sls setlocal syntax=yaml
 
 else
-        " No autocommand support, so just turn on autointenting.
-        set autoindent
+    " No autocommand support, so just turn on autointenting.
+    set autoindent
 endif " has("autocmd")
 
 " Set the extra cursor keys to work one visual line at a time.
@@ -219,7 +215,7 @@ let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_style_error_symbol = "S✗"
 let g:syntastic_style_warning_symbol  = "S⚠"
 if (system('uname') =~ "darwin")
-	let g:syntastic_python_python_exec = '/usr/local/opt/python3/bin/python3'
+    let g:syntastic_python_python_exec = '/usr/local/opt/python3/bin/python3'
 endif
 
 " GitGutter
@@ -306,4 +302,4 @@ set t_Co=256
 " :function : list functions
 " :func SearchCompl : List particular function
 " gq formats the selected lines of text.
-"
+

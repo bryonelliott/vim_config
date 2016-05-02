@@ -140,10 +140,6 @@ if has("autocmd")
         " Also load indent files, to automatically do language-dependent indenting.
         filetype plugin indent on
 
-        " Put these in an autocmd group, so that we can delete them easily.
-        augroup vimrcEx
-        au!
-
         " When editing a file, always jump to the last known cursor position.
         " Don't do it when the position is invalid or when inside an event handler
         " (happens when dropping a file on gvim).
@@ -151,8 +147,6 @@ if has("autocmd")
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
                 \   exe "normal g`\"" |
                 \ endif
-
-        augroup END
 
         " From a tip on vim.org.  Allows Ctrl-N completion to work w/ XML.
         autocmd FileType {html,xml,xslt,htmldjango}
@@ -162,9 +156,13 @@ if has("autocmd")
         autocmd FileType {html,xml,xslt,htmldjango}
                 \  setlocal columns=120
 
+        " YAML files use different indentation.
+        autocmd FileType yaml
+                \  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+
         " Python files should use spaces for indentation.
         autocmd FileType python
-               \  setlocal expandtab softtabstop=4 nowrap go+=b
+                \  setlocal expandtab softtabstop=4 nowrap go+=b
 
         " Don't wrap log files.
         autocmd BufNew,BufRead *.log
@@ -172,19 +170,17 @@ if has("autocmd")
 
         " File types in which I want tabs to be tabs.
         autocmd FileType {sh,vim}
-               \  setlocal noexpandtab softtabstop=0
+                \  setlocal noexpandtab softtabstop=0
 
         "" Recognize SCONS files as Python.
         "autocmd BufNew,BufRead SConstruct*,SConscript*
-        "       \  setf python
+        "        \  setf python
         "autocmd BufNew,BufRead SConstruct*,SConscript*
-        "       \  setlocal syntax=python
+        "        \  setlocal syntax=python
 
         " Recognize .sls files as YAML.
-        autocmd BufNew,BufRead *.sls
-               \  setf yaml
-        autocmd BufNew,BufRead *.sls
-               \  setlocal syntax=yaml tabstop=2 softtabstop=2 shiftwidth=2
+        autocmd BufNew,BufRead *.sls setf yaml
+        autocmd BufNew,BufRead *.sls setlocal syntax=yaml
 
 else
         " No autocommand support, so just turn on autointenting.
@@ -283,7 +279,13 @@ let Tlist_Process_File_Always = 1
 let Tlist_Close_On_Select = 1
 
 " Enable mouse support within a shell window.  See :help MouseDown for more info.
-set mouse=a
+if !has("gui_running")
+    set mouse=a
+    inoremap <Esc>[62~ <C-X><C-E>
+    inoremap <Esc>[63~ <C-X><C-Y>
+    nnoremap <Esc>[62~ <C-E>
+    nnoremap <Esc>[63~ <C-Y>
+endif
 
 " Colour Scheme
 " /usr/share/vim/vim74/colors
@@ -304,3 +306,4 @@ set t_Co=256
 " :function : list functions
 " :func SearchCompl : List particular function
 " gq formats the selected lines of text.
+"

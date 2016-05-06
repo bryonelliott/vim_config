@@ -1,9 +1,12 @@
-﻿" Bryon's VIMRC.  Based on Bram Moolenaar's example VIMRC file and
+﻿" Bryon's VIMRC.  Originally based on Bram Moolenaar's example VIMRC file and
 " his mswin.vim file.
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+
+"" Force 256 colours.
+"set t_Co=256
 
 " Pathogen: Poor man's package manager. Easy manipulation of 'runtimepath' et al
 " http://www.vim.org/scripts/script.php?script_id=2332
@@ -291,9 +294,6 @@ colorscheme moria
 
 " Highlight the line the cursor is on.
 " set cursorline
-
-" Force 256 colours.
-set t_Co=256
 
 " NOTES
 " Run-time path: :echo &rtp

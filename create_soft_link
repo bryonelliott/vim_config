@@ -1,0 +1,3 @@
+#!/bin/bash -vx
+cd ~
+ln --symbolic --relative --force --backup=numbered .vim/vimrc .vimrc

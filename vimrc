@@ -5,9 +5,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-"" Force 256 colours.
-"set t_Co=256
-
 " Pathogen: Poor man's package manager. Easy manipulation of 'runtimepath' et al
 " http://www.vim.org/scripts/script.php?script_id=2332
 " http://github.com/tpope/vim-pathogen
@@ -29,8 +26,8 @@ endif
 " I just have no use for the backup files.
 set nobackup
 
-" Keep 50 lines of command line history
-set history=50
+" Keep more lines of command line history
+set history=500
 
 " Look and feel.
 set ruler
@@ -74,6 +71,18 @@ set hidden
 
 " Recognize all types of line endings.
 set fileformats=unix,mac,dos
+
+" Get the insert/normal mode cursor work under Cygwin.
+if has("win32unix")
+    let &t_ti.="\e[1 q"
+    let &t_SI.="\e[5 q"
+    let &t_EI.="\e[1 q"
+    let &t_te.="\e[0 q"
+endif
+
+" This is a little dangerous, but I manually save so often that I get no use
+" from swap files.
+set noswapfile
 
 " Extend matching functionality.  Included with VIM, so just activate it.
 runtime macros/matchit.vim
@@ -164,7 +173,7 @@ if has("autocmd")
 
     " Python files should use spaces for indentation.
     autocmd FileType python
-            \  setlocal expandtab softtabstop=4 nowrap go+=b
+            \  setlocal nowrap go+=b
 
     " Don't wrap log files.
     autocmd BufNew,BufRead *.log setlocal nowrap go+=b

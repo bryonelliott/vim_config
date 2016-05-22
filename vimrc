@@ -42,10 +42,12 @@ if has("gui_running")
     set lines=70
     aunmenu ToolBar.Print
     if has("gui_gtk")
-        set guifont=FreeMono\ 11
+        " https://github.com/powerline/fonts
+        set guifont=Droid\ Sans\ Mono\ Dotted\ for\ Powerline\ 8,FreeMono\ 11
     endif
     if has("gui_win32")
-        set guifont=DejaVu_Sans_Mono:h8:cANSI
+        " https://github.com/powerline/fonts
+        set guifont=Droid_Sans_Mono_Dotted_for_Powe:h8:cANSI,DejaVu_Sans_Mono:h8:cANSI
     endif
 endif
 
@@ -239,6 +241,7 @@ set previewheight=25
 
 " Airline.  https://github.com/bling/vim-airline
 set laststatus=2
+let g:airline_powerline_fonts = 1
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 "let g:airline_symbols.linenr = '¶'

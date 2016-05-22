@@ -239,11 +239,11 @@ let g:gitgutter_max_signs = 2000
 set previewheight=25
 "set statusline+=%{fugitive#statusline()}
 
-" Airline.  https://github.com/bling/vim-airline
+" Airline.  https://github.com/bling/vim-airline, https://github.com/powerline/fonts
 set laststatus=2
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '◀'
 "let g:airline_symbols.linenr = '¶'
 "let g:airline_symbols.branch = '⎇'
 "let g:airline_symbols.paste = 'ρ'

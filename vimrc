@@ -94,8 +94,10 @@ set splitright
 set splitbelow
 
 " Since I have a windoze background, I'm used to these:
+" HOWEVER, these oft mess up other things, so I'm commenting out the stuff
+" I don't use, or am training myself to do in a more universal vim-like way.
     " Set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows.
-    behave mswin
+    "behave mswin
     " BUT!  Leave select mode off since I prefer visual mode.
     set selectmode=
 
@@ -105,47 +107,47 @@ set splitbelow
     " backspace in Visual mode deletes selection.
     vnoremap <BS> d
 
-    " Cut-n-Paste
-    vnoremap <C-X> "+x
-    vnoremap <C-C> "+y
-    map <C-V>      "+gP
-    cmap <C-V>     <C-R>+
+    "" Cut-n-Paste
+    "vnoremap <C-X> "+x
+    "vnoremap <C-C> "+y
+    "map <C-V>      "+gP
+    "cmap <C-V>     <C-R>+
 
     " Pasting blockwise and linewise selections is not possible in Insert and
     " Visual mode without the +virtualedit feature.  They are pasted as if they
     " were characterwise instead.
     " Uses the paste.vim autoload script.
-    exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-    exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+    "exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+    "exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
     " Use CTRL-Q to do what CTRL-V used to do
-    noremap <C-Q>           <C-V>
+    noremap <C-Q>   <C-V>
 
-    " For CTRL-V to work autoselect must be off.
-    " On Unix we have two selections, autoselect can be used.
-    if !has("unix")
-        set guioptions-=a
-    endif
+    "" For CTRL-V to work autoselect must be off.
+    "" On Unix we have two selections, autoselect can be used.
+    "if !has("unix")
+    "    set guioptions-=a
+    "endif
 
-    " CTRL-A is Select all
-    noremap <C-A> gggH<C-O>G
-    inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-    cnoremap <C-A> <C-C>gggH<C-O>G
-    onoremap <C-A> <C-C>gggH<C-O>G
-    snoremap <C-A> <C-C>gggH<C-O>G
-    xnoremap <C-A> <C-C>ggVG
+    "" CTRL-A is Select all
+    "noremap <C-A> gggH<C-O>G
+    "inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+    "cnoremap <C-A> <C-C>gggH<C-O>G
+    "onoremap <C-A> <C-C>gggH<C-O>G
+    "snoremap <C-A> <C-C>gggH<C-O>G
+    "xnoremap <C-A> <C-C>ggVG
 
-    " CTRL-Tab is Next window
-    noremap <C-Tab> <C-W>w
-    inoremap <C-Tab> <C-O><C-W>w
-    cnoremap <C-Tab> <C-C><C-W>w
-    onoremap <C-Tab> <C-C><C-W>w
+    "" CTRL-Tab is Next window
+    "noremap <C-Tab> <C-W>w
+    "inoremap <C-Tab> <C-O><C-W>w
+    "cnoremap <C-Tab> <C-C><C-W>w
+    "onoremap <C-Tab> <C-C><C-W>w
 
-    " CTRL-F4 is Close window
-    noremap <C-F4> <C-W>c
-    inoremap <C-F4> <C-O><C-W>c
-    cnoremap <C-F4> <C-C><C-W>c
-    onoremap <C-F4> <C-C><C-W>c
+    "" CTRL-F4 is Close window
+    "noremap <C-F4> <C-W>c
+    "inoremap <C-F4> <C-O><C-W>c
+    "cnoremap <C-F4> <C-C><C-W>c
+    "onoremap <C-F4> <C-C><C-W>c
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -200,22 +202,53 @@ endif " has("autocmd")
 " Set the extra cursor keys to work one visual line at a time.
 noremap  <buffer> <silent> <A-Up>   gk
 noremap  <buffer> <silent> <A-Down> gj
-noremap  <buffer> <silent> <Home> g<Home>
-noremap  <buffer> <silent> <End>  g<End>
+"noremap  <buffer> <silent> <Home> g<Home>
+"noremap  <buffer> <silent> <End>  g<End>
 vnoremap <buffer> <silent> <A-Up>   gk
 vnoremap <buffer> <silent> <A-Down> gj
-vnoremap <buffer> <silent> <Home> g<Home>
-vnoremap <buffer> <silent> <End>  g<End>
+"vnoremap <buffer> <silent> <Home> g<Home>
+"vnoremap <buffer> <silent> <End>  g<End>
 inoremap <buffer> <silent> <A-Up>   <C-o>gk
 inoremap <buffer> <silent> <A-Down> <C-o>gj
-inoremap <buffer> <silent> <Home> <C-o>g<Home>
-inoremap <buffer> <silent> <End>  <C-o>g<End>
+"inoremap <buffer> <silent> <Home> <C-o>g<Home>
+"inoremap <buffer> <silent> <End>  <C-o>g<End>
 
 " Allow modelines.
 set modeline
 set modelines=5
 
+" Smooth scrolling with Ctrl-U and Ctrl-D.
+function SmoothScroll(up)
+    if a:up
+        let scrollaction=""
+    else
+        let scrollaction=""
+    endif
+    exec "normal " . scrollaction
+    redraw
+    let counter=1
+    while counter<&scroll
+        let counter+=1
+        sleep 10m
+        redraw
+        exec "normal " . scrollaction
+    endwhile
+endfunction
+
+nnoremap <C-U> :call SmoothScroll(1)<Enter>
+nnoremap <C-D> :call SmoothScroll(0)<Enter>
+inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
+inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
+
 " Syntastic.  https://github.com/scrooloose/syntastic
+" If having difficulties, begin debugging with :SyntasticInfo.
+" * :echo syntastic#util#system('echo "$PATH"') or :echo syntastic#util#system('echo %PATH%')
+" * Ensure both vim-flake8 and flake8 are installed.
+"   - vim-flake8: https://github.com/nvie/vim-flake8/blob/master/README.mdown
+"                 Press F7 when editing a Python file.
+"   - flake8: https://pypi.python.org/pypi/flake8/
+"     pip install --upgrade flake8
+"     pip install --upgrade pep8-naming
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -314,4 +347,7 @@ colorscheme moria
 " :function : list functions
 " :func SearchCompl : List particular function
 " gq formats the selected lines of text.
+
+" TO-DO:
+" Investigate PyUnit: https://github.com/nvie/vim-pyunit
 

@@ -27,7 +27,7 @@ endif
 set nobackup
 
 " Keep more lines of command line history
-set history=500
+set history=1000
 
 " Look and feel.
 set ruler
@@ -74,7 +74,7 @@ set hidden
 " Recognize all types of line endings.
 set fileformats=unix,mac,dos
 
-" Get the insert/normal mode cursor work under Cygwin.
+" Get the insert/normal mode cursor to work within Cygwin.
 if has("win32unix")
     let &t_ti.="\e[1 q"
     let &t_SI.="\e[5 q"
@@ -129,13 +129,13 @@ set splitbelow
     "    set guioptions-=a
     "endif
 
-    "" CTRL-A is Select all
-    "noremap <C-A> gggH<C-O>G
-    "inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-    "cnoremap <C-A> <C-C>gggH<C-O>G
-    "onoremap <C-A> <C-C>gggH<C-O>G
-    "snoremap <C-A> <C-C>gggH<C-O>G
-    "xnoremap <C-A> <C-C>ggVG
+    " CTRL-A is Select all
+    noremap <C-A> gggH<C-O>G
+    inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+    cnoremap <C-A> <C-C>gggH<C-O>G
+    onoremap <C-A> <C-C>gggH<C-O>G
+    snoremap <C-A> <C-C>gggH<C-O>G
+    xnoremap <C-A> <C-C>ggVG
 
     "" CTRL-Tab is Next window
     "noremap <C-Tab> <C-W>w
@@ -217,28 +217,8 @@ inoremap <buffer> <silent> <A-Down> <C-o>gj
 set modeline
 set modelines=5
 
-" Smooth scrolling with Ctrl-U and Ctrl-D.
-function SmoothScroll(up)
-    if a:up
-        let scrollaction=""
-    else
-        let scrollaction=""
-    endif
-    exec "normal " . scrollaction
-    redraw
-    let counter=1
-    while counter<&scroll
-        let counter+=1
-        sleep 10m
-        redraw
-        exec "normal " . scrollaction
-    endwhile
-endfunction
-
-nnoremap <C-U> :call SmoothScroll(1)<Enter>
-nnoremap <C-D> :call SmoothScroll(0)<Enter>
-inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
-inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
+" Ag, The Silver Searcher: https://github.com/rking/ag.vim
+let g:ag_highlight=1
 
 " Syntastic.  https://github.com/scrooloose/syntastic
 " If having difficulties, begin debugging with :SyntasticInfo.
@@ -249,6 +229,7 @@ inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
 "   - flake8: https://pypi.python.org/pypi/flake8/
 "     pip install --upgrade flake8
 "     pip install --upgrade pep8-naming
+
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -322,6 +303,10 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Process_File_Always = 1
 let Tlist_Close_On_Select = 1
 
+" DirDiff.  https://github.com/will133/vim-dirdiff
+let g:DirDiffExcludes = ".git,*.pyc,tags"
+
+
 " Enable mouse support within a shell window.  See :help MouseDown for more info.
 if !has("gui_running")
     set mouse=a
@@ -336,6 +321,22 @@ endif
 " colorscheme ron
 set background=light
 colorscheme moria
+" An override for diff mode to make it readable.
+" From: http://stackoverflow.com/a/13370967/1126375
+highlight! link DiffText Todo
+
+" The Ctrl-<arrow> keys don't correctly within Screen/TMux.
+" Disable them, because they actively destroy the document!
+if &term == "screen-256color" || &term == "screen"
+    noremap <Esc>[1;5A <NOP>
+    noremap <Esc>[1;5B <NOP>
+    noremap <Esc>[1;5C <NOP>
+    noremap <Esc>[1;5D <NOP>
+    noremap! <Esc>[1;5A <NOP>
+    noremap! <Esc>[1;5B <NOP>
+    noremap! <Esc>[1;5C <NOP>
+    noremap! <Esc>[1;5D <NOP>
+endif
 
 " Highlight the line the cursor is on.
 " set cursorline
@@ -350,4 +351,6 @@ colorscheme moria
 
 " TO-DO:
 " Investigate PyUnit: https://github.com/nvie/vim-pyunit
+" Look into Solarized color scheme: https://github.com/altercation/vim-colors-solarized
+"     let g:solarized_diffmode="high"  " Set high visibility for diff mode
 

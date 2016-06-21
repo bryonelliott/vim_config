@@ -217,6 +217,11 @@ inoremap <buffer> <silent> <A-Down> <C-o>gj
 set modeline
 set modelines=5
 
+" For convenience, put a checkboxes in registers!
+let @c = "☐"
+let @x = "☒"
+let @u = "☑"
+
 " Ag, The Silver Searcher: https://github.com/rking/ag.vim
 let g:ag_highlight=1
 
